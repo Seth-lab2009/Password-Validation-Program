@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+int main() {
+    const int MAX_ATTEMPTS = 3;
+    string password;
+
+    for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        cout << "Enter a password: ";
+        cin >> password;
+
+        bool hasUpper = false;
+        bool hasLower = false;
+        bool hasDigit = false;
+
+        for (char ch : password) {
+            if (isupper(ch))
+                hasUpper = true;
+            else if (islower(ch))
+                hasLower = true;
+            else if (isdigit(ch))
+                hasDigit = true;
+        }
+
+        if (password.length() >= 8 &&
+            password.length() <= 20 &&
+            hasUpper &&
+            hasLower &&
+            hasDigit) {
+
+            cout << "Password accepted!" << endl;
+            return 0;
+        } else {
+            cout << "Invalid password." << endl;
+
+            if (attempt < MAX_ATTEMPTS) {
+                cout << "Attempts remaining: "
+                     << MAX_ATTEMPTS - attempt << endl;
+            }
+        }
+    }
+
+    cout << "Maximum attempts reached. Access denied." << endl;
+
+    return 0;
+}
