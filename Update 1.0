@@ -4,17 +4,36 @@
 
 using namespace std;
 
+
+bool phasUpper;  // Makes sure the password has an uppercase letter.
+bool phasLower;  // Makes sure the password has a lowercase letter.
+bool phasNumber; // Maes sure the password has a number.
+
+int maxAttempts;
+
 int main() {
-    const int MAX_ATTEMPTS = 3;
+    // This rules screen will display showing the user the correct format of the password
+    cout << " Welcome to The Password-inator 5000"<< endl;
+    cout << " ___________________________________"<< endl;
+    cout << " _________________________________________" << endl;
+    cout << " |Your password must follow these rules                   |"<< endl;
+    cout << " |1. Have at least 8 characters                                  |"<< endl;
+    cout << " |2. Include at least one number                                |"<< endl;
+    cout << " |3. Include at least one uppercase letter                   |"<< endl;
+    cout << " |4. Include at least one lowercase letter                   |"<<endl;
+    cout << " |________________________________________|"<<endl;
+    
+    
+    const int maxAttempts = 3;
     string password;
 
-    for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-        cout << "Enter a password: ";
-        cin >> password;
+    for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+        cout << "Enter your password: ";
+         getline(cin,password);
 
         bool hasUpper = false;
         bool hasLower = false;
-        bool hasDigit = false;
+        bool hasNumber = false;
 
         for (char ch : password) {
             if (isupper(ch))
@@ -22,28 +41,29 @@ int main() {
             else if (islower(ch))
                 hasLower = true;
             else if (isdigit(ch))
-                hasDigit = true;
+                hasNumber = true;
         }
 
         if (password.length() >= 8 &&
             password.length() <= 20 &&
             hasUpper &&
             hasLower &&
-            hasDigit) {
+            hasNumber) {
 
-            cout << "Password accepted!" << endl;
+            cout << "Password accepted, good job!" << endl;
             return 0;
         } else {
-            cout << "Invalid password." << endl;
+            cout << "Invalid password, try again." << endl;
 
-            if (attempt < MAX_ATTEMPTS) {
-                cout << "Attempts remaining: "
-                     << MAX_ATTEMPTS - attempt << endl;
+            if (attempt < maxAttempts) {
+                cout << " Your Attempts remaining are: "
+                     << maxAttempts - attempt << endl;
             }
         }
     }
 
-    cout << "Maximum attempts reached. Access denied." << endl;
+    cout << " The Maximum attempts have been reached. Access denied." << endl;
 
     return 0;
 }
+
