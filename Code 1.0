@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+bool phasUpper;
+bool phasLower;
+bool phasNumber;
+
+int maxAttempts;
+
+int main() {
+    // Rules screen
+    cout << " Welcome to The Password-inator 5000" << endl;
+    cout << " ___________________________________" << endl;
+    cout << " _________________________________________" << endl;
+    cout << " |Your password must follow these rules   |" << endl;
+    cout << " |1. Have at least 8 characters           |" << endl;
+    cout << " |2. Include at least one number          |" << endl;
+    cout << " |3. Include at least one uppercase letter|" << endl;
+    cout << " |4. Include at least one lowercase letter|" << endl;
+    cout << " |5. Maximum length is 20 characters      |" << endl;
+    cout << " |________________________________________|" << endl;
+
+    const int maxAttempts = 3;
+    string password;
+    string confirmPassword;
+
+    for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+        cout << "\nEnter your password: ";
+        getline(cin, password);
+
+        bool hasUpper = false;
+        bool hasLower = false;
+        bool hasNumber = false;
+
+        for (char ch : password) {
+            if (isupper(ch))
+                hasUpper = true;
+            else if (islower(ch))
+                hasLower = true;
+            else if (isdigit(ch))
+                hasNumber = true;
+        }
+
+        if (password.length() >= 8 &&
+            password.length() <= 20 &&
+            hasUpper &&
+            hasLower &&
+            hasNumber) {
+
+            cout << "Re-enter your password to confirm: ";
+            getline(cin, confirmPassword);
+
+            if (password == confirmPassword) {
+                cout << "\nPassword accepted, good job!" << endl;
+                return 0;
+            }
+            else {
+                cout << "Passwords do not match." << endl;
+            }
+        }
+        else {
+            cout << "Invalid password." << endl;
+        }
+
+        if (attempt < maxAttempts) {
+            cout << "Attempts remaining: "
+                 << maxAttempts - attempt << endl;
+        }
+    }
+
+    cout << "\nMaximum attempts reached. Program shutting down." << endl;
+
+    return 0;
+}
