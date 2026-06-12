@@ -4,14 +4,14 @@
 
 using namespace std;
 
-bool phasUpper;
-bool phasLower;
-bool phasNumber;
+bool phasUpper;  // Makes sure the password has an uppercase letter
+bool phasLower;  // Makes sure the password has a lowercase letter
+bool phasNumber; //  Makes sure the password has a number in it
 
 int maxAttempts;
 
 int main() {
-    // Rules screen
+    // Rules screen that will display first
     cout << " Welcome to The Password-inator 5000" << endl;
     cout << " ___________________________________" << endl;
     cout << " _________________________________________" << endl;
@@ -23,7 +23,7 @@ int main() {
     cout << " |5. Maximum length is 20 characters      |" << endl;
     cout << " |________________________________________|" << endl;
 
-    const int maxAttempts = 3;
+    const int maxAttempts = 3;   // How many attemmpts the user has to enter the password
     string password;
     string confirmPassword;
 
@@ -58,11 +58,11 @@ int main() {
                 return 0;
             }
             else {
-                cout << "Passwords do not match." << endl;
+                cout << "Passwords are not the same." << endl;
             }
         }
         else {
-            cout << "Invalid password." << endl;
+            cout << "Invalid password, check to make sure your password fits all requirements.." << endl;
         }
 
         if (attempt < maxAttempts) {
@@ -71,7 +71,7 @@ int main() {
         }
     }
 
-    cout << "\nMaximum attempts reached. Program shutting down." << endl;
+    cout << "\nMaximum attempts reached. Program shutting down." << endl;   // When the user reaches the maximum attempts
 
     return 0;
 }
