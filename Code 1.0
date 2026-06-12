@@ -6,7 +6,7 @@ using namespace std;
 
 bool phasUpper;  // Makes sure the password has an uppercase letter
 bool phasLower;  // Makes sure the password has a lowercase letter
-bool phasNumber; //  Makes sure the password has a number in it
+bool phasDigit; //  Makes sure the password has a number in it
 
 int maxAttempts;
 
@@ -33,7 +33,7 @@ int main() {
 
         bool hasUpper = false;
         bool hasLower = false;
-        bool hasNumber = false;
+        bool hasDigit = false;
 
         for (char ch : password) {
             if (isupper(ch))
@@ -41,14 +41,14 @@ int main() {
             else if (islower(ch))
                 hasLower = true;
             else if (isdigit(ch))
-                hasNumber = true;
+                hasDigit = true;
         }
 
         if (password.length() >= 8 &&
             password.length() <= 20 &&
             hasUpper &&
             hasLower &&
-            hasNumber) {
+            hasDigit) {
 
             cout << "Re-enter your password to confirm: ";
             getline(cin, confirmPassword);
